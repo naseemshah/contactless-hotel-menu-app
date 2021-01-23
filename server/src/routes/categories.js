@@ -23,6 +23,7 @@ router.get('/categories',testMiddleware, (req, res)=>{
     })
 });
 
+// to add catogries
 router.post('/addCategory',[testMiddleware], (req, res)=>{
     // name, type, status
     var name = req.body.name;
@@ -43,6 +44,21 @@ router.post('/addCategory',[testMiddleware], (req, res)=>{
         .catch((err) => console.log(err));
     res.json({ message: 'done'});
     //console.log(req.body.name)
+})
+
+// to edit categories
+router.post('/editCategory', testMiddleware, (req, res)=>{
+    // changed value name, type, status
+    Category.findByIdAndUpdate(req.body.id,{
+        name: req.body.name,
+        type: req.body.type,
+        status: req.body.status
+    }).then(()=>{
+        res.json({ message: 'saved sucessfully' });
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
 })
 
 module.exports = router;
