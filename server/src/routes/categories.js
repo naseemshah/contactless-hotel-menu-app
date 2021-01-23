@@ -11,9 +11,16 @@ var testMiddleware = require('../auth/middleware');
 // models
 var Category = require('../models/Categories');
 
+
 router.get('/categories',testMiddleware, (req, res)=>{
-    // Category.find({});
-    res.send('category');
+
+    Category.find()
+    .then((categories) =>{
+        res.json(categories)
+    })
+    .catch((err)=> {
+        console.log(err)
+    })
 });
 
 router.post('/addCategory',[testMiddleware], (req, res)=>{
