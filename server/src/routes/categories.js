@@ -61,4 +61,17 @@ router.post('/editCategory', testMiddleware, (req, res)=>{
     })
 })
 
+// change status
+router.put('/changeStatus', testMiddleware, (req, res)=>{
+    // changes value status
+    Category.findByIdAndUpdate(req.body.id, {
+        status: req.body.status
+    }).then(()=>{
+        res.json({ message: 'saved sucessfully' });
+    }).catch((err)=>{
+        console.log(err)
+        res.json({ error: err})
+    })
+})
+
 module.exports = router;

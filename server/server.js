@@ -10,7 +10,7 @@ app.get("/", function(req, res) {
     res.status(200).send("CONTACTLESS HOTEL MENU APP");
   });
 
-mongoose.connect('mongodb://localhost:27017/hotelManagementDB', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb://localhost:27017/hotelManagementDB', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 mongoose.connection.on('connected', () => {
   console.log('Connected to mdongo db');
 });
