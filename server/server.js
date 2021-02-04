@@ -26,9 +26,11 @@ app.use(bodyParser.json())
 require('./src/models/Categories');
 
 //Routes
-var categories = require('./src/routes/categories')
+var categories = require('./src/routes/categories');
+var dishes = require('./src/routes/dishes');
 
-app.use(categories)
+app.use(categories);
+app.use(dishes)
 
 
 //port

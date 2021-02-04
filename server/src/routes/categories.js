@@ -1,7 +1,4 @@
 var express = require("express");
-var mongoose = require('mongoose');
-var json = require('json');
-var bodyParser = require('body-parser')
 
 var router = express.Router();
 
@@ -29,7 +26,7 @@ router.post('/addCategory',[testMiddleware], (req, res)=>{
     var name = req.body.name;
     var type = req.body.type;
     var status = req.body.status;
-    if (!name || !type || !status){
+    if (!name || !type || !status.toString()){
         return res.status(422).json({error: 'Enter all fields'})
     };
     var category = new Category({
@@ -38,12 +35,11 @@ router.post('/addCategory',[testMiddleware], (req, res)=>{
         status
     });
     category.save()
-        .then((category)=>{
+        .then(()=>{
             // res.json({ message: 'saved sucessfully' });
         })
         .catch((err) => console.log(err));
     res.json({ message: 'done'});
-    //console.log(req.body.name)
 })
 
 // to edit categories
@@ -62,7 +58,7 @@ router.post('/editCategory', testMiddleware, (req, res)=>{
 })
 
 // change status
-router.put('/changeStatus', testMiddleware, (req, res)=>{
+router.put('category/changeStatus', testMiddleware, (req, res)=>{
     // changes value status
     Category.findByIdAndUpdate(req.body.id, {
         status: req.body.status

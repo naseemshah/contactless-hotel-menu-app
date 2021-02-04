@@ -15,7 +15,7 @@
     2. req body - id, name, type, status
     3. request format - json
     4. response -message
-    - ### route - '/editCategory'
+    - ### route - '/changeStatus'
     1. request - put
     2. req body - id, status
     3. request format - json
